@@ -23,7 +23,7 @@ DATABASES = {
         "NAME": env.str("DB_NAME"),
         "USER": env.str("DB_USER"),
         "PASSWORD": env.str("DB_PWD"),
-        "HOST": env.str("DB_HOST"),
+        #"HOST": env.str("DB_HOST"),
         "PORT": env.str("DB_PORT"),
     }
 }

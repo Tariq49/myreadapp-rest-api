@@ -1,5 +1,5 @@
 dev-start:
-	python3 manage.py runserver --settings=config.settings.dev
+	python manage.py runserver --settings=config.settings.dev
 dev-startapp:
 	cd apps && python3 ../manage.py startapp $(app) --settings=config.settings.dev
 dev-migrate:
