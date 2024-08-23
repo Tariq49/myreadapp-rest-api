@@ -14,7 +14,7 @@ class TagSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError('name should not contain special characters')
         return value
 
-    name = serializers.SerializerMethodField()
+    name = serializers.SerializerMethodField(read_only=True)
 
 
    
