@@ -1,6 +1,7 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.generics import RetrieveAPIView, DestroyAPIView, RetrieveDestroyAPIView
 
 from apps.book.models import Author
 from apps.book.serializer import AuthorSerializer
@@ -20,3 +21,14 @@ def list_authors(request):
     return Response(data.data, status=status.HTTP_200_OK)
 
 
+class DetailAuthor(RetrieveDestroyAPIView):
+    # How do we handle generic views?
+    # ORM 
+    queryset = Author.objects.all()
+
+    # Serializer
+    serializer_class = AuthorSerializer
+
+class DeleteAuthor(DestroyAPIView):
+    queryset = Author.objects.all()
+    serializer_class = AuthorSerializer
