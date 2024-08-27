@@ -7,7 +7,7 @@ from apps.book.serializer import AuthorSerializer
 
 
 # Function-based view
-@api_view(['GET']) # by default , it uses a 'GET' method
+@api_view(['GET']) # by default , it uses a 'GET' method, and get take as many as it handles (['GET', 'POST'])
 def list_authors(request):
     # Get all authors using ORM
     authors = Author.objects.all()

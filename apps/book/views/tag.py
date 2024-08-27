@@ -7,13 +7,13 @@ from apps.book.models import Tag
 from apps.book.serializer import TagSerializer
 
 @api_view(['GET']) # by default , it uses a 'GET' method
-def list_tags(request):
-    # Get all authors using ORM
-    tags = Tag.objects.all()
+def list_tags(request): # JSONParser
+    # Get all tags using ORM
+    tags = Tag.objects.all() # Complex Data type (Querysets)
 
-    # Deserialize using the AuthorSerializer
-    data = TagSerializer(tags, many=True)
+    # Deserialize using the TagSerializer
+    data = TagSerializer(tags, many=True) # convert complex data types to primitive Python types
 
 
-    # Return data
+    # Return data to JSON
     return Response(data.data, status=status.HTTP_200_OK)

@@ -29,19 +29,21 @@ def list_books(request):
 @api_view(['POST']) 
 def create_book(request):
     with transaction.atomic():
-        data= request.data # retrieve the request body
+        data= request.data # retrieve the request body in native Python data types
+       
         authors = data['authors']
    
         book = CreateBookSerializer(data=data)
 
-        if book.is_valid():
-            saved_book = book.save()
+        book.is_valid()
+        saved_book = book.save()
 
         # add authors
-            for author in authors:
-                author_obj = Author.objects.get(pk=author['id'])
-                saved_book.authors.add(author_obj, through_defaults={'role': author['role']})
+        for author in authors:
+            author_obj = Author.objects.get(pk=author['id'])
+            saved_book.authors.add(author_obj, through_defaults={'role': author['role']})
 
+    # Return a JSON transformed data
     return Response({'isbn': saved_book.isbn}, status=status.HTTP_201_CREATED)
     
     # return Response({'detail': 'Invalid request data', 'error': 'Invalid_Request'}, status=status.HTTP_400_BAD_REQUEST)
